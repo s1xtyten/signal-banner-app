@@ -19,7 +19,7 @@
     let isLoading = false;
     let position = $imageSettings.bannerPosition;
     let bannerHeight = 20; // Percentage of image height
-    let bannerUrl = './assets/banner.png'
+    let bannerUrl = 'banner.png'
     let mergedImage = null;
 
     let sliderOpacity = $imageSettings.bannerOpacity * 100; // Slider value (0-100)
