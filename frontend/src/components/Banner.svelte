@@ -3,7 +3,7 @@
 
     export let position = 0; // Initial position in percentage
     export let bannerHeight = 20; // Height of the banner in percentage
-    export let opacity = 1;
+    export let opacity = 0.8;
     export let bannerUrl =  '/assets/banner.png'
 
     const dispatch = createEventDispatcher();
