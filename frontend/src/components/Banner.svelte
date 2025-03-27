@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { onMount, createEventDispatcher } from 'svelte';
 
     export let position = 0; // Initial position in percentage
     export let bannerHeight = 20; // Height of the banner in percentage
@@ -7,10 +7,27 @@
     export let bannerUrl =  'banner.png'
 
     const dispatch = createEventDispatcher();
+    let bannerElement;
+    let aspectRatio = 1;
 
     let isDragging = false;
     let startY = 0; // Initial Y position of the mouse
     let initialPosition = 0; // Initial position of the banner
+
+    onMount(async () => {
+        // Load banner image to get its natural dimensions
+        const img = new Image();
+        img.src = bannerUrl;
+        await img.decode();
+
+        // Calculate aspect ratio
+        aspectRatio = img.naturalWidth / img.naturalHeight;
+
+        // Dynamically adjust the banner height to maintain aspect ratio
+        const containerWidth = bannerElement.parentElement.offsetWidth; // Get the width of the parent container
+        const calculatedHeight = containerWidth / aspectRatio; // Calculate height based on aspect ratio
+        bannerHeight = (calculatedHeight / bannerElement.parentElement.offsetHeight) * 100; // Convert to percentage
+    });
 
     function startDrag(event) {
         isDragging = true;
@@ -24,7 +41,7 @@
         if (!isDragging) return;
 
         const deltaY = event.clientY - startY; // Calculate the vertical movement
-        const containerHeight = 300; // Height of the container (in pixels)
+        const containerHeight = bannerElement.parentElement.offsetHeight; // Get the height of the parent container
         const percentageDelta = (deltaY / containerHeight) * 100; // Convert movement to percentage
 
         // Update the position, ensuring it stays within bounds
@@ -44,8 +61,9 @@
         position: absolute;
         left: 0;
         right: 0;
+        width: 100%;
         cursor: grab; /* Indicate that the element can be dragged */
-        background-size: contain;
+        background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
         pointer-events: auto; /* Allow interaction with the banner */
@@ -57,6 +75,7 @@
 </style>
 
 <div
+    bind:this={bannerElement}
     class="banner-overlay"
     style="
         top: {position}%;

@@ -102,12 +102,22 @@ async function processImage() {
             bannerImg.src = bannerUrl; // Use the banner image URL
             await new Promise((resolve) => (bannerImg.onload = resolve));
 
-            const bannerHeightPx = (bannerHeight / 100) * canvas.height;
-            const bannerY = (position / 100) * canvas.height;
+            // Calculate the banner's height based on its aspect ratio
+            const bannerAspectRatio = bannerImg.width / bannerImg.height;
+            const bannerHeightPx = canvas.width / bannerAspectRatio; // Height based on full width
+            const bannerY = (position / 100) * canvas.height; // Vertical position in pixels
+
+            // Ensure the banner doesn't exceed the canvas height
+            const adjustedBannerHeightPx = Math.min(bannerHeightPx, canvas.height - bannerY);
 
             ctx.globalAlpha = opacity; // Set banner opacity
-            ctx.drawImage(bannerImg, 0, bannerY, canvas.width, bannerHeightPx);
-
+            ctx.drawImage(
+                bannerImg,
+                0, // X position (start at the left edge)
+                bannerY, // Y position
+                canvas.width, // Full width of the canvas
+                adjustedBannerHeightPx // Adjusted height to maintain aspect ratio
+            );
             // Convert the canvas content to a data URL
             mergedImage = canvas.toDataURL('image/jpeg');
 
@@ -150,8 +160,8 @@ async function processImage() {
     } 
 
     .cropped-image {
-        width: 400px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         object-fit: cover; 
     } 
 </style>
