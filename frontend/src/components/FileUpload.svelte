@@ -20,6 +20,7 @@
                 file: file,
                 previewUrl: e.target.result
             });
+            console.log(previewUrl);
         };
         reader.readAsDataURL(file);
     }

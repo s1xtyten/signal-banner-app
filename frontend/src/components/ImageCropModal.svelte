@@ -132,31 +132,32 @@ async function processImage() {
 <style>
     .cropper-container {
         position: relative;
-        width: 100%;
+        width: 400px;
         height: 400px;
         background-color: #333;
         overflow: hidden;
+        margin: 0 auto;
     }
 
     .cropped-image-container {
         display: flex; 
         position: relative;
-        width: 100%;
+        width: 400px;
         height: 400px;
         background-color: #333;
         overflow: hidden;
-        margin: auto;
+        margin: 0 auto;
     } 
 
     .cropped-image {
-        width: 100%;
+        width: 400px;
         height: 400px;
         object-fit: cover; 
     } 
 </style>
 
 <div class="modal modal-open" class:modal-open={isModalOpen}>
-    <div class="modal-box max-w-4xl">
+    <div class="flex flex-col items-center modal-box max-w-xl">
         {#if step === 1}
             <h3 class="font-bold text-lg mb-4">Crop your photo</h3>
             <p class="font-normal text-xs">Just scroll or adjust slider to zoom, click and drag to move</p>      
@@ -165,7 +166,7 @@ async function processImage() {
             <p class="font-normal text-xs">Just click and drag to place it where you like and change the opacity with the slider</p>
         {/if}
         
-        <div class="flex flex-col items-center">    
+        <div class="flex flex-col items-center max-w-xl">    
             {#if step === 1}
                 <!-- Step 1: Crop Image -->
                 <div class="cropper-container">
@@ -196,7 +197,7 @@ async function processImage() {
                     />
                 </div>
 
-                <div class="modal-action">
+                <div class="flex justify-center gap-1 mt-1 modal-action">
                     <button class="btn btn-error" on:click={closeModal}>
                         Cancel
                     </button>
