@@ -31,16 +31,20 @@
 
     function startDrag(event) {
         isDragging = true;
-        startY = event.clientY; // Record the initial Y position of the mouse
+        startY = event.type === 'touchstart' ? event.touches[0].clientY : event.clientY; // Record the initial Y position
         initialPosition = position; // Record the initial position of the banner
+
+        // Add event listeners for dragging
         window.addEventListener('mousemove', onDrag);
         window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('touchmove', onDrag);
+        window.addEventListener('touchend', stopDrag);
     }
-
     function onDrag(event) {
         if (!isDragging) return;
 
-        const deltaY = event.clientY - startY; // Calculate the vertical movement
+        const currentY = event.type === 'touchmove' ? event.touches[0].clientY : event.clientY; // Get the current Y position
+        const deltaY = currentY - startY; // Calculate the vertical movement
         const containerHeight = bannerElement.parentElement.offsetHeight; // Get the height of the parent container
         const percentageDelta = (deltaY / containerHeight) * 100; // Convert movement to percentage
 
@@ -53,6 +57,8 @@
         isDragging = false;
         window.removeEventListener('mousemove', onDrag);
         window.removeEventListener('mouseup', stopDrag);
+        window.removeEventListener('touchmove', onDrag);
+        window.removeEventListener('touchend', stopDrag);
     }
 </script>
 
@@ -84,4 +90,5 @@
         background-image: url('{bannerUrl}');
     "
     on:mousedown={startDrag}
+    on:touchstart={startDrag}
 ></div>
