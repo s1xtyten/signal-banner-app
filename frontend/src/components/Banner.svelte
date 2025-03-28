@@ -37,11 +37,15 @@
         // Add event listeners for dragging
         window.addEventListener('mousemove', onDrag);
         window.addEventListener('mouseup', stopDrag);
-        window.addEventListener('touchmove', onDrag);
+        window.addEventListener('touchmove', onDrag, { passive: false }); // Add passive: false to allow preventDefault
         window.addEventListener('touchend', stopDrag);
     }
     function onDrag(event) {
         if (!isDragging) return;
+
+        if (event.type === 'touchmove') {
+            event.preventDefault(); // Prevent the default scrolling behavior
+        }
 
         const currentY = event.type === 'touchmove' ? event.touches[0].clientY : event.clientY; // Get the current Y position
         const deltaY = currentY - startY; // Calculate the vertical movement
