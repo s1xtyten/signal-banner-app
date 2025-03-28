@@ -39,13 +39,8 @@
         window.addEventListener('mouseup', stopDrag);
         window.addEventListener('touchmove', onDrag, { passive: false }); // Add passive: false to allow preventDefault
         window.addEventListener('touchend', stopDrag);
-
-        // Prevent scrolling when touch starts
-        if (event.type === 'touchstart') {
-            event.preventDefault();
-        }
     }
-
+    
     function onDrag(event) {
         if (!isDragging) return;
 
