@@ -65,12 +65,12 @@
     }
 </style>
 
-<main class="flex flex-col items-center w-full mx-auto max-w-xl px-4 py-8">
-    <div class="w-full">
+<main class="flex flex-col items-center w-full mx-auto px-4 py-8">
+    <div class="flex flex-col w-10/12 ">
         <Header title="Signal Banner App" />
-        <div class="card bg-base-100 shadow-xl w-full">
+        <div class="mx-auto w-full max-w-xl mt-20">
             <div class="flex flex-col justify-center card-body">
-                <h2 class="card-title">Upload photo:</h2>
+                <h2 class="card-title">Upload your profile pic</h2>
                 
                 {#key unique}
                     <FileUpload 
