@@ -24,7 +24,7 @@
         </div>
         <p class="text-sm">Use this tool to add a nice Signal banner to your profile picture. 
         <br>
-        <span class="font-bold text">Make a tiny fist against Mark Z's exploitation of our digital life!</span></p>
+        <span class="font-bold text-emerald-500 italic">Make a tiny fist against Mark Z's exploitation of our digital life!</span></p>
     </div>
     
 </div>

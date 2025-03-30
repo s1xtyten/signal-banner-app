@@ -33,7 +33,7 @@
     <input
         bind:this={fileInput}
         type="file"
-        class="file-input file-input-bordered file-input-primary w-full"
+        class="file-input file-input-bordered file-input-primary w-full mt-8"
         accept="image/*"
         on:change={handleFileSelect}
     />
