@@ -25,9 +25,12 @@
         <p class="text-sm">
                 Use this tool to add a nice Signal banner to your profile picture. 
                 <br>
-                <span class="font-bold text-emerald-500 italic">Make a tiny fist against Big Tech's exploitation of our digital life!</span>
                 <br>
-                <a href="https://en.wikipedia.org/wiki/Network_effect">https://en.wikipedia.org/wiki/Network_effect</a>
+                <span class="font-bold text-emerald-500 italic">
+                        Make a tiny fist against Big Tech's exploitation of our digital life!
+                        <br>
+                        <a href="https://en.wikipedia.org/wiki/Network_effect">https://en.wikipedia.org/wiki/Network_effect</a>
+                </span>
         </p>
     </div>
     
